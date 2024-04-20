@@ -1,5 +1,5 @@
 # nm-sqlite3-migration
-Super simple tool for managing sqlite3 migrations
+Super simple tool for managing sqlite3 migrations.
 
 > [!CAUTION]
 > Backup your database before doing migrations.
@@ -11,6 +11,17 @@ Super simple tool for managing sqlite3 migrations
 `down` for down
 
 `show` to check what is going on
+
+```
+nm-sqlite3-migration               
+  Valid commands: up down show schema
+  -dir string
+    	path to migration folder (default ".")
+  -dsn string
+    	dsn
+```
+
+`-dsn` is path to your db file in basic scenario. 
 
 ## Filename format
 
@@ -31,7 +42,7 @@ drop table test2;
 
 ## Versioning
 
-Version of migration lives in `user_version` of `PRAGMA` so you always can check it with `PRAGMA user_version;` and set it with `PRAGMA user_version = X;`.
+Version of migration lives in `user_version` of `PRAGMA` so you always can check it with `PRAGMA user_version;` and set it with `PRAGMA user_version = X;`. Also show command display current version of migration in db.
 
 ```
 > sqlite3 test.db
@@ -44,3 +55,9 @@ sqlite> PRAGMA user_version;
 42
 sqlite> 
 ```
+
+## Install
+
+`go install github.com/nikitamarchenko/nm-sqlite3-migration`
+
+
