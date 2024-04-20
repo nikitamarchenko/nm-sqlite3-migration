@@ -137,12 +137,15 @@ func up(db *DB, files Files) {
 
 func down(db *DB, files Files) {
 	version, err := db.getDbVersion()
-	newVersion := version - 1
+	var newVersion uint
+	if version > 0 {
+		newVersion = version - 1
+	}
 	if err != nil {
-		fmt.Printf("Db version error: %d\n", version)
+		fmt.Printf("Db version error: %s\n", err)
 		return
 	}
-	if newVersion < 1 {
+	if version == 0 {
 		fmt.Printf("We on lowest migration %d\n", version)
 		return
 	}
