@@ -79,7 +79,7 @@ func main() {
 	case "show":
 		show(db, files)
 	case "schema":
-		fmt.Printf("sqlite3 %s '.schema'\n", *dsn)
+		fmt.Printf("sqlite3 %s '.schema --nosys'\n", *dsn)
 	default:
 		printUsage()
 	}
